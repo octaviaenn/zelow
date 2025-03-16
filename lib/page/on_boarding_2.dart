@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:zelow/page/on_boarding_2.dart';
+import 'package:zelow/page/on_boarding_3.dart';
 import 'package:zelow/page/welcome_page.dart';
 
-class OnBoarding1 extends StatefulWidget {
-  const OnBoarding1({super.key});
+class OnBoarding2 extends StatefulWidget {
+  const OnBoarding2({super.key});
 
   @override
-  State<OnBoarding1> createState() => _OnBoarding1State();
+  State <OnBoarding2> createState() =>  _OnBoarding2State();
 }
 
-class _OnBoarding1State extends State<OnBoarding1> {
+class  _OnBoarding2State extends State <OnBoarding2> {
   @override
-  Widget build(BuildContext context) {
+ Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -22,7 +22,7 @@ class _OnBoarding1State extends State<OnBoarding1> {
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: ExactAssetImage('assets/images/on_boarding_1.png'),
+                image: ExactAssetImage('assets/images/on_boarding_2.png'),
                 fit: BoxFit.fill,
               ),
             ),
@@ -33,11 +33,11 @@ class _OnBoarding1State extends State<OnBoarding1> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Food Waste Solution',
+                  'Flash Sale & Surprise Bag',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  'Bantu kurangi food waste &\nhemat biaya makanan',
+                  'Dapatkan diskon & surprise bag \ndengan harga makin terjangkau!',
                   style: TextStyle(fontSize: 16, color: Colors.grey),
                 ),
               ],
@@ -48,13 +48,13 @@ class _OnBoarding1State extends State<OnBoarding1> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image.asset("assets/images/slide_image_1.png"),
+                Image.asset("assets/images/slide_image_2.png"),
                 IconButton(
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => OnBoarding2(),
+                        builder: (context) => OnBoarding3(),
                       ),
                     );
                   },

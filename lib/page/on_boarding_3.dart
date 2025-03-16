@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:zelow/page/on_boarding_2.dart';
 import 'package:zelow/page/welcome_page.dart';
 
-class OnBoarding1 extends StatefulWidget {
-  const OnBoarding1({super.key});
+class OnBoarding3 extends StatefulWidget {
+  const OnBoarding3({super.key});
 
   @override
-  State<OnBoarding1> createState() => _OnBoarding1State();
+  State <OnBoarding3> createState() =>  _OnBoarding3State();
 }
 
-class _OnBoarding1State extends State<OnBoarding1> {
+class  _OnBoarding3State extends State <OnBoarding3> {
   @override
-  Widget build(BuildContext context) {
+ Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -22,7 +21,7 @@ class _OnBoarding1State extends State<OnBoarding1> {
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: ExactAssetImage('assets/images/on_boarding_1.png'),
+                image: ExactAssetImage('assets/images/on_boarding_3.png'),
                 fit: BoxFit.fill,
               ),
             ),
@@ -33,11 +32,11 @@ class _OnBoarding1State extends State<OnBoarding1> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Food Waste Solution',
+                  'Mudah & Cepat',
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  'Bantu kurangi food waste &\nhemat biaya makanan',
+                  'Pesan makanan favoritmu, \nbayar dengan berbagai metode.',
                   style: TextStyle(fontSize: 16, color: Colors.grey),
                 ),
               ],
@@ -48,13 +47,13 @@ class _OnBoarding1State extends State<OnBoarding1> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image.asset("assets/images/slide_image_1.png"),
+                Image.asset("assets/images/slide_image_3.png"),
                 IconButton(
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => OnBoarding2(),
+                        builder: (context) => WelcomePage(),
                       ),
                     );
                   },

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sign_button/constants.dart';
 import 'package:sign_button/create_button.dart';
+import 'package:zelow/page/register_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -181,7 +182,10 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(context,
+                           MaterialPageRoute(builder: (context) => SignUp()));
+                        },
                         child: Text(
                           " Sign Up",
                           style: GoogleFonts.poppins(
