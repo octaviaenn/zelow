@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zelow/page/login_page.dart';
+import 'package:zelow/page/register_page.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -74,12 +75,8 @@ class _WelcomePageState extends State<WelcomePage> {
                 SizedBox(height: MediaQuery.of(context).size.width * 0.05),
                 GestureDetector(
                   onTap: () async {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => LoginPageVendor(),
-                    //   ),
-                    // );
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => SignUp()));
                   },
                   child: Container(
                     height: MediaQuery.of(context).size.width * 0.12,

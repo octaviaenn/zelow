@@ -62,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                       filled: true,
                     ),
                   ),
-                  const SizedBox(height: 15),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                   Text(
                     "Password",
                     style: GoogleFonts.poppins(
