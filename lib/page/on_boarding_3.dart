@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zelow/components/constant.dart';
 import 'package:zelow/page/welcome_page.dart';
 
 class OnBoarding3 extends StatefulWidget {
@@ -33,11 +34,17 @@ class  _OnBoarding3State extends State <OnBoarding3> {
               children: [
                 Text(
                   'Mudah & Cepat',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  style: blackTextStyle.copyWith(
+                    fontSize: MediaQuery.of(context).size.width * 0.055,
+                    fontWeight: FontWeight.bold,
+                    ),
                 ),
                 Text(
                   'Pesan makanan favoritmu, \nbayar dengan berbagai metode.',
-                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                  style: greyTextStyle.copyWith(
+                    fontSize: MediaQuery.of(context).size.width * 0.035,
+                    fontWeight: FontWeight.normal,
+                    ),
                 ),
               ],
             ),

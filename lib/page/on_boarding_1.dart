@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:zelow/components/constant.dart';
 import 'package:zelow/page/on_boarding_2.dart';
-import 'package:zelow/page/welcome_page.dart';
 
 class OnBoarding1 extends StatefulWidget {
   const OnBoarding1({super.key});
@@ -34,11 +34,17 @@ class _OnBoarding1State extends State<OnBoarding1> {
               children: [
                 Text(
                   'Food Waste Solution',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  style: blackTextStyle.copyWith(
+                    fontSize: MediaQuery.of(context).size.width * 0.055,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(
                   'Bantu kurangi food waste &\nhemat biaya makanan',
-                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                  style: greyTextStyle.copyWith(
+                    fontSize: MediaQuery.of(context).size.width * 0.035,
+                    fontWeight: FontWeight.normal,
+                  ),
                 ),
               ],
             ),

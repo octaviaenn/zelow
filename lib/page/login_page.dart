@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:sign_button/constants.dart';
 import 'package:sign_button/create_button.dart';
+import 'package:zelow/components/constant.dart';
 import 'package:zelow/page/register_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -39,10 +39,9 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   Text(
                     "Email",
-                    style: GoogleFonts.poppins(
+                    style: blackTextStyle.copyWith(
                       fontSize: MediaQuery.of(context).size.width * 0.035,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
                     ),
                   ),
                   const SizedBox(height: 5),
@@ -53,10 +52,9 @@ class _LoginPageState extends State<LoginPage> {
                         borderSide: BorderSide.none,
                       ),
                       hintText: "Email",
-                      hintStyle: GoogleFonts.poppins(
+                      hintStyle: greyTextStyle.copyWith(
                         fontSize: MediaQuery.of(context).size.width * 0.03,
                         fontWeight: FontWeight.w400,
-                        color: Color(0xff838383),
                       ),
                       fillColor: Color(0xffEFEFEF),
                       filled: true,
@@ -65,10 +63,9 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                   Text(
                     "Password",
-                    style: GoogleFonts.poppins(
+                    style: blackTextStyle.copyWith(
                       fontSize: MediaQuery.of(context).size.width * 0.035,
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
                     ),
                   ),
                   const SizedBox(height: 5),
@@ -79,10 +76,9 @@ class _LoginPageState extends State<LoginPage> {
                         borderSide: BorderSide.none,
                       ),
                       hintText: "Password",
-                      hintStyle: GoogleFonts.poppins(
+                      hintStyle: greyTextStyle.copyWith(
                         fontSize: MediaQuery.of(context).size.width * 0.03,
                         fontWeight: FontWeight.w400,
-                        color: Color(0xff838383),
                       ),
                       fillColor: Color(0xffEFEFEF),
                       filled: true,
@@ -96,10 +92,9 @@ class _LoginPageState extends State<LoginPage> {
                     },
                     child: Text(
                       'Forgot password?',
-                      style: GoogleFonts.poppins(
-                        color: const Color(0xff06C474),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
+                      style: greenTextStyle.copyWith(
+                        fontSize: MediaQuery.of(context).size.width * 0.03,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
@@ -122,10 +117,9 @@ class _LoginPageState extends State<LoginPage> {
                       child: Center(
                         child: Text(
                           "Login",
-                          style: GoogleFonts.poppins(
+                          style: whiteTextStyle.copyWith(
                             fontSize: MediaQuery.of(context).size.width * 0.04,
                             fontWeight: FontWeight.w600,
-                            color: Colors.white,
                           ),
                         ),
                       ),
@@ -175,10 +169,9 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       Text(
                         "You don't have an account?",
-                        style: GoogleFonts.poppins(
+                        style: blackTextStyle.copyWith(
                           fontSize: MediaQuery.of(context).size.width * 0.03,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black,
+                          fontWeight: FontWeight.w400,  
                         ),
                       ),
                       GestureDetector(
@@ -188,10 +181,9 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         child: Text(
                           " Sign Up",
-                          style: GoogleFonts.poppins(
+                          style: greenTextStyle.copyWith(
                             fontSize: MediaQuery.of(context).size.width * 0.03,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xff06C474),
                           ),
                         ),
                       ),

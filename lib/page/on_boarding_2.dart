@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:zelow/components/constant.dart';
 import 'package:zelow/page/on_boarding_3.dart';
-import 'package:zelow/page/welcome_page.dart';
 
 class OnBoarding2 extends StatefulWidget {
   const OnBoarding2({super.key});
@@ -34,11 +34,17 @@ class  _OnBoarding2State extends State <OnBoarding2> {
               children: [
                 Text(
                   'Flash Sale & Surprise Bag',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  style: blackTextStyle.copyWith(
+                    fontSize: MediaQuery.of(context).size.width * 0.055,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(
                   'Dapatkan diskon & surprise bag \ndengan harga makin terjangkau!',
-                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                  style: greyTextStyle.copyWith(
+                    fontSize: MediaQuery.of(context).size.width * 0.035,
+                    fontWeight: FontWeight.normal,
+                  ),
                 ),
               ],
             ),

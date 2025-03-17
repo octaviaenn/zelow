@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:zelow/components/constant.dart';
 
 class VerifPwpage extends StatefulWidget {
   const VerifPwpage({super.key});
@@ -32,10 +32,9 @@ class _VerifPwpageState extends State<VerifPwpage> {
       appBar: AppBar(
         title: Text(
           'Sign Up',
-          style: GoogleFonts.poppins(
-            color: Colors.black,
+          style: blackTextStyle.copyWith(
             fontSize: MediaQuery.of(context).size.width * 0.06,
-            fontWeight: FontWeight.w900,
+            fontWeight: FontWeight.w700,
           ),
         ),
         centerTitle: true,
@@ -50,8 +49,7 @@ class _VerifPwpageState extends State<VerifPwpage> {
           children: [
             Text(
               'Verification',
-              style: GoogleFonts.poppins(
-                color: Colors.black,
+              style: blackTextStyle.copyWith(
                 fontSize: MediaQuery.of(context).size.width * 0.07,
                 fontWeight: FontWeight.bold,
               ),
@@ -60,8 +58,7 @@ class _VerifPwpageState extends State<VerifPwpage> {
             RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
-                style: GoogleFonts.poppins(
-                  color: Colors.black,
+                style: blackTextStyle.copyWith(
                   fontSize: MediaQuery.of(context).size.width * 0.04,
                   fontWeight: FontWeight.normal,
                 ),
@@ -69,7 +66,7 @@ class _VerifPwpageState extends State<VerifPwpage> {
                   const TextSpan(text: 'We’ve sent an Email with an activation code to '),
                   TextSpan(
                     text: 'your-email@example.com', // Email dibuat statis
-                    style: GoogleFonts.poppins(
+                    style: blackTextStyle.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -97,7 +94,7 @@ class _VerifPwpageState extends State<VerifPwpage> {
                     textAlign: TextAlign.center,
                     maxLength: 1,
                     cursorColor: const Color(0xff06C474),
-                    style: GoogleFonts.poppins(
+                    style: blackTextStyle.copyWith(
                       fontSize: MediaQuery.of(context).size.width * 0.08,
                       fontWeight: FontWeight.w600,
                     ),
@@ -128,8 +125,7 @@ class _VerifPwpageState extends State<VerifPwpage> {
               child: RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
-                  style: GoogleFonts.poppins(
-                    color: Colors.black,
+                  style: blackTextStyle.copyWith(
                     fontSize: MediaQuery.of(context).size.width * 0.04,
                     fontWeight: FontWeight.normal,
                   ),
@@ -137,9 +133,8 @@ class _VerifPwpageState extends State<VerifPwpage> {
                     const TextSpan(text: 'Didn’t receive a code? '),
                     TextSpan(
                       text: 'Resend',
-                      style: GoogleFonts.poppins(
+                      style: blackTextStyle.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
                       ),
                     ),
                   ],
@@ -155,7 +150,7 @@ class _VerifPwpageState extends State<VerifPwpage> {
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xff06C474),
+                backgroundColor: zelow,
                 minimumSize: const Size(double.infinity, 44),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24),
@@ -163,8 +158,7 @@ class _VerifPwpageState extends State<VerifPwpage> {
               ),
               child: Text(
                 'Submit',
-                style: GoogleFonts.poppins(
-                  color: Colors.white,
+                style: whiteTextStyle.copyWith(
                   fontSize: MediaQuery.of(context).size.width * 0.045,
                   fontWeight: FontWeight.bold,
                 ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:zelow/components/constant.dart';
 import 'package:zelow/page/login_page.dart';
 import 'package:zelow/page/verif_forgot_pw.dart';
 
@@ -30,8 +30,7 @@ class _ForgotPWPageState extends State<ForgotPWPage> {
               const SizedBox(height: 15),
               Text(
                 'Forgot password?',
-                style: GoogleFonts.poppins(
-                  color: Colors.black,
+                style: blackTextStyle.copyWith(
                   fontSize: MediaQuery.of(context).size.width * 0.07,
                   fontWeight: FontWeight.bold,
                 ),
@@ -41,14 +40,16 @@ class _ForgotPWPageState extends State<ForgotPWPage> {
                 width: 300,
                 child: Text(
                   'Don’t worry! It happens.\nPlease enter the email associated with your account.',
-                  style: GoogleFonts.poppins(color: Color(0xff06C474), fontSize: MediaQuery.of(context).size.width * 0.035, fontWeight: FontWeight.normal),
+                  style: greenTextStyle.copyWith(
+                    fontSize: MediaQuery.of(context).size.width * 0.035,
+                    fontWeight: FontWeight.normal,
+                  ),
                 ),
               ),
               const SizedBox(height: 73),
               Text(
                 'Email address',
-                style: GoogleFonts.inter(
-                  color: Colors.black,
+                style: blackTextStyle.copyWith(
                   fontSize: MediaQuery.of(context).size.width * 0.04,
                   fontWeight: FontWeight.normal,
                 )
@@ -65,8 +66,7 @@ class _ForgotPWPageState extends State<ForgotPWPage> {
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: 'Enter your email address',
-                    hintStyle: GoogleFonts.inter(
-                      color: Colors.grey,
+                    hintStyle: greyTextStyle.copyWith(
                       fontSize: MediaQuery.of(context).size.width * 0.03,
                       fontWeight: FontWeight.normal,
                     ),
@@ -80,7 +80,7 @@ class _ForgotPWPageState extends State<ForgotPWPage> {
                 height: 44,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xff06C474),
+                    backgroundColor: zelow,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
                   ),
                   onPressed: () {
@@ -88,9 +88,8 @@ class _ForgotPWPageState extends State<ForgotPWPage> {
                   },
                   child: Text(
                     'Send code',
-                    style: GoogleFonts.poppins(
-                      color: Colors.white,
-                      fontSize: MediaQuery.of(context).size.width * 0.035,
+                    style: whiteTextStyle.copyWith(
+                      fontSize: MediaQuery.of(context).size.width * 0.04,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -102,10 +101,9 @@ class _ForgotPWPageState extends State<ForgotPWPage> {
                 children: [
                   Text(
                     'Remember password?',
-                    style: GoogleFonts.poppins(
-                        color:  Color(0xff06C474),
-                        fontSize: MediaQuery.of(context).size.width * 0.04,
-                        fontWeight: FontWeight.normal,
+                    style: greenTextStyle.copyWith(
+                      fontSize: MediaQuery.of(context).size.width * 0.04,
+                      fontWeight: FontWeight.normal,
                         ),
                   ),
                   TextButton(
@@ -117,8 +115,7 @@ class _ForgotPWPageState extends State<ForgotPWPage> {
                     },
                     child: Text(
                       'Log in',
-                      style: GoogleFonts.poppins(
-                        color:  Color(0xff06C474),
+                      style: greenTextStyle.copyWith(
                         fontSize: MediaQuery.of(context).size.width * 0.04,
                         fontWeight: FontWeight.bold,
 

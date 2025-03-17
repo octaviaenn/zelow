@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:zelow/components/constant.dart';
 
 class Verification extends StatefulWidget {
   const Verification({super.key});
@@ -36,8 +36,7 @@ class _VerificationState extends State<Verification> {
       appBar: AppBar(
         title: Text(
           'Sign Up',
-          style: GoogleFonts.poppins(
-            color: Colors.black,
+          style: blackTextStyle.copyWith(
             fontSize: MediaQuery.of(context).size.width * 0.05,
             fontWeight: FontWeight.bold,
           ),
@@ -56,7 +55,7 @@ class _VerificationState extends State<Verification> {
           children: [
             Text(
               'Verification',
-              style: GoogleFonts.poppins(
+              style:blackTextStyle.copyWith(
                 fontSize: MediaQuery.of(context).size.width * 0.06,
                 fontWeight: FontWeight.bold,
               ),
@@ -65,8 +64,7 @@ class _VerificationState extends State<Verification> {
             RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
-                style: GoogleFonts.poppins(
-                  color: Colors.black,
+                style: blackTextStyle.copyWith(
                   fontSize: MediaQuery.of(context).size.width * 0.04,
                   fontWeight: FontWeight.normal,
                 ),
@@ -76,8 +74,7 @@ class _VerificationState extends State<Verification> {
                   ),
                   TextSpan(
                     text: _email,
-                    style: GoogleFonts.poppins(
-                      color: Colors.black,
+                    style: blackTextStyle.copyWith(
                       fontSize: MediaQuery.of(context).size.width * 0.04,
                       fontWeight: FontWeight.normal,
                     ),
@@ -105,9 +102,8 @@ class _VerificationState extends State<Verification> {
                     keyboardType: TextInputType.number,
                     textAlign: TextAlign.center,
                     maxLength: 1,
-                    cursorColor: const Color(0xff06C474),
-                    style: GoogleFonts.inter(
-                      color: Colors.black,
+                    cursorColor: zelow,
+                    style: blackTextStyle.copyWith(
                       fontSize: MediaQuery.of(context).size.width * 0.075,
                       fontWeight: FontWeight.w600,
                     ),
@@ -124,8 +120,7 @@ class _VerificationState extends State<Verification> {
                 padding: const EdgeInsets.only(top: 8),
                 child: Text(
                   'Wrong code, please try again',
-                  style: GoogleFonts.poppins(
-                    color: Colors.red,
+                  style: verifTextStyle.copyWith(
                     fontSize: MediaQuery.of(context).size.width * 0.04,
                     fontWeight: FontWeight.w600,
                   ),
@@ -135,8 +130,7 @@ class _VerificationState extends State<Verification> {
             if (!_canResendCode)
               Text(
                 '00:${_timerSeconds.toString().padLeft(2, '0')}',
-                style: GoogleFonts.poppins(
-                  color: Colors.black,
+                style: blackTextStyle.copyWith(
                   fontSize: MediaQuery.of(context).size.width * 0.04,
                   fontWeight: FontWeight.w400,
                 ),
@@ -156,7 +150,7 @@ class _VerificationState extends State<Verification> {
                 width: _bubbleSize,
                 height: _bubbleSize,
                 decoration: BoxDecoration(
-                  color: const Color(0xff06C474),
+                  color:zelow,
                   shape: BoxShape.circle,
                 ),
               ),
@@ -165,8 +159,7 @@ class _VerificationState extends State<Verification> {
                 onPressed: () {}, // Placeholder for verify function
                 child: Text(
                   'Submit',
-                  style: GoogleFonts.poppins(
-                    color: Colors.white,
+                  style: whiteTextStyle.copyWith(
                     fontSize: MediaQuery.of(context).size.width * 0.04,
                     fontWeight: FontWeight.normal,
                   ),
