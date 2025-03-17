@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zelow/components/constant.dart';
-import 'package:zelow/page/verification.dart';
+
+import '../../services/auth_service.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -11,7 +12,50 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   String? selectedRole;
-  final List<String> roles = ['User', 'UMKM'];
+  final List<String> roles = ['user', 'umkm'];
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _fullnameController = TextEditingController();
+  final _usernameController = TextEditingController();
+  final AuthService _authService = AuthService();
+
+  bool isLoading = false;
+
+  void _handleSignUp() async {
+    if (_emailController.text.isEmpty ||
+        _passwordController.text.isEmpty ||
+        _fullnameController.text.isEmpty ||
+        _usernameController.text.isEmpty ||
+        selectedRole == null) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Semua bidang harus diisi')));
+      return;
+    }
+
+    setState(() {
+      isLoading = true;
+    });
+
+    await _authService.signUp(
+      _emailController.text,
+      _passwordController.text,
+      _fullnameController.text,
+      _usernameController.text,
+      selectedRole!,
+      context,
+      (errorMessage) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(errorMessage)));
+      },
+      (loading) {
+        setState(() {
+          isLoading = loading;
+        });
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +63,7 @@ class _SignUpState extends State<SignUp> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(
-            left: 20,
-            right: 20,
-            top: 10,
-          ),
+          padding: EdgeInsets.only(left: 20, right: 20, top: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -67,8 +107,10 @@ class _SignUpState extends State<SignUp> {
                       fillColor: const Color(0xffEFEFEF),
                       filled: true,
                     ),
+                    controller: _emailController,
+                    keyboardType: TextInputType.emailAddress,
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height* 0.05),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                   Text(
                     "Fullname",
                     style: blackTextStyle.copyWith(
@@ -91,8 +133,9 @@ class _SignUpState extends State<SignUp> {
                       fillColor: const Color(0xffEFEFEF),
                       filled: true,
                     ),
+                    controller: _fullnameController,
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height* 0.05),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                   Text(
                     "Username",
                     style: blackTextStyle.copyWith(
@@ -115,6 +158,7 @@ class _SignUpState extends State<SignUp> {
                       fillColor: const Color(0xffEFEFEF),
                       filled: true,
                     ),
+                    controller: _usernameController,
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                   Text(
@@ -140,8 +184,9 @@ class _SignUpState extends State<SignUp> {
                       filled: true,
                     ),
                     obscureText: true,
+                    controller: _passwordController,
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height* 0.05),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                   Text(
                     "Role",
                     style: blackTextStyle.copyWith(
@@ -167,18 +212,21 @@ class _SignUpState extends State<SignUp> {
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                        items: roles.map((String role) {
-                          return DropdownMenuItem<String>(
-                            value: role,
-                            child: Text(
-                              role,
-                              style: blackTextStyle.copyWith(
-                                fontSize: MediaQuery.of(context).size.width * 0.035,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          );
-                        }).toList(),
+                        items:
+                            roles.map((String role) {
+                              return DropdownMenuItem<String>(
+                                value: role,
+                                child: Text(
+                                  role,
+                                  style: blackTextStyle.copyWith(
+                                    fontSize:
+                                        MediaQuery.of(context).size.width *
+                                        0.035,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              );
+                            }).toList(),
                         onChanged: (String? newValue) {
                           setState(() {
                             selectedRole = newValue;
@@ -190,27 +238,26 @@ class _SignUpState extends State<SignUp> {
                 ],
               ),
               SizedBox(height: MediaQuery.of(context).size.width * 0.25),
-                  GestureDetector(
-                    onTap: () async {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Verification()));
-                    },
-                    child: Container(
-                      height: MediaQuery.of(context).size.width * 0.12,
-                      decoration: BoxDecoration(
-                        color: zelow,
-                        borderRadius: BorderRadius.circular(24),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Sign Up",
-                          style: whiteTextStyle.copyWith(
-                            fontSize: MediaQuery.of(context).size.width * 0.04,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
+              GestureDetector(
+                onTap: isLoading ? null : _handleSignUp,
+                child: Container(
+                  height: MediaQuery.of(context).size.width * 0.12,
+                  decoration: BoxDecoration(
+                    color: zelow,
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Sign Up",
+                      style: whiteTextStyle.copyWith(
+                        fontSize: MediaQuery.of(context).size.width * 0.04,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.width * 0.05),
             ],
           ),
         ),

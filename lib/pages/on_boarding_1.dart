@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zelow/components/constant.dart';
-import 'package:zelow/page/on_boarding_2.dart';
+import 'package:zelow/pages/on_boarding_2.dart';
 
 class OnBoarding1 extends StatefulWidget {
   const OnBoarding1({super.key});

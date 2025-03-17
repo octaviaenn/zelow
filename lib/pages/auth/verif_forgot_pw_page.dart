@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:zelow/components/constant.dart';
+import 'package:zelow/pages/auth/reset_password_page.dart';
+import 'package:zelow/services/auth_service.dart';
 
-class VerifPwpage extends StatefulWidget {
-  const VerifPwpage({super.key});
+class VerifPwPage extends StatefulWidget {
+  final String email;
+
+  const VerifPwPage({super.key, required this.email});
 
   @override
-  _VerifPwpageState createState() => _VerifPwpageState();
+  _VerifPwPageState createState() => _VerifPwPageState();
 }
 
-class _VerifPwpageState extends State<VerifPwpage> {
-  final int _otpLength = 5;
+class _VerifPwPageState extends State<VerifPwPage> {
+  final int _otpLength = 6;
   late List<TextEditingController> _otpControllers;
+  final AuthService _authService = AuthService();
+  bool _isLoading = false;
 
   @override
   void initState() {
     super.initState();
-    _otpControllers = List.generate(_otpLength, (index) => TextEditingController());
+    _otpControllers = List.generate(
+      _otpLength,
+      (index) => TextEditingController(),
+    );
   }
 
   @override
@@ -26,12 +35,43 @@ class _VerifPwpageState extends State<VerifPwpage> {
     super.dispose();
   }
 
+  void _verifyOTP() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    String enteredOTP = _otpControllers.map((e) => e.text).join();
+
+    bool isValid = await _authService.verifyOTP(widget.email, enteredOTP);
+
+    if (isValid) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('OTP Verified Successfully')),
+      );
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ResetPasswordPage(email: widget.email),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Invalid OTP. Please try again')),
+      );
+    }
+
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Sign Up',
+          'Verify OTP',
           style: blackTextStyle.copyWith(
             fontSize: MediaQuery.of(context).size.width * 0.06,
             fontWeight: FontWeight.w700,
@@ -55,22 +95,12 @@ class _VerifPwpageState extends State<VerifPwpage> {
               ),
             ),
             const SizedBox(height: 7),
-            RichText(
+            Text(
+              'We’ve sent an Email with an activation code to ${widget.email}',
               textAlign: TextAlign.center,
-              text: TextSpan(
-                style: blackTextStyle.copyWith(
-                  fontSize: MediaQuery.of(context).size.width * 0.04,
-                  fontWeight: FontWeight.normal,
-                ),
-                children: [
-                  const TextSpan(text: 'We’ve sent an Email with an activation code to '),
-                  TextSpan(
-                    text: 'your-email@example.com', // Email dibuat statis
-                    style: blackTextStyle.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
+              style: blackTextStyle.copyWith(
+                fontSize: MediaQuery.of(context).size.width * 0.04,
+                fontWeight: FontWeight.normal,
               ),
             ),
             const SizedBox(height: 50),
@@ -82,10 +112,7 @@ class _VerifPwpageState extends State<VerifPwpage> {
                   height: 60,
                   margin: const EdgeInsets.symmetric(horizontal: 5),
                   decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.grey, // Tidak ada error state
-                      width: 1,
-                    ),
+                    border: Border.all(color: Colors.grey, width: 1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: TextField(
@@ -114,56 +141,25 @@ class _VerifPwpageState extends State<VerifPwpage> {
               }),
             ),
             const SizedBox(height: 24),
-            const SizedBox(height: 249),
-            GestureDetector(
-              onTap: () {
-                // Simulasi resend code
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Code resent successfully')),
-                );
-              },
-              child: RichText(
-                textAlign: TextAlign.center,
-                text: TextSpan(
-                  style: blackTextStyle.copyWith(
-                    fontSize: MediaQuery.of(context).size.width * 0.04,
-                    fontWeight: FontWeight.normal,
+            if (_isLoading) const CircularProgressIndicator(),
+            if (!_isLoading)
+              ElevatedButton(
+                onPressed: _verifyOTP,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: zelow,
+                  minimumSize: const Size(double.infinity, 44),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24),
                   ),
-                  children: [
-                    const TextSpan(text: 'Didn’t receive a code? '),
-                    TextSpan(
-                      text: 'Resend',
-                      style: blackTextStyle.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
+                ),
+                child: Text(
+                  'Submit',
+                  style: whiteTextStyle.copyWith(
+                    fontSize: MediaQuery.of(context).size.width * 0.045,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 24),
-            ElevatedButton(
-              onPressed: () {
-                // Simulasi verifikasi sukses
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Code verified successfully')),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: zelow,
-                minimumSize: const Size(double.infinity, 44),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24),
-                ),
-              ),
-              child: Text(
-                'Submit',
-                style: whiteTextStyle.copyWith(
-                  fontSize: MediaQuery.of(context).size.width * 0.045,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
           ],
         ),
       ),
