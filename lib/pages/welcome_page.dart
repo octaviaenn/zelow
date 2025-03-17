@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:zelow/page/login_page.dart';
-import 'package:zelow/page/register_page.dart';
+import 'package:zelow/pages/auth/login_page.dart';
+import 'package:zelow/pages/auth/register_page.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
