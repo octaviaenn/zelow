@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zelow/components/constant.dart';
+import 'package:zelow/components/navbar.dart';
 
 import '../../services/auth_service.dart';
 
@@ -18,19 +19,12 @@ class _HomePageUserState extends State<HomePageUser> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: white,
-      appBar: AppBar(
-        backgroundColor: white,
-        elevation: 0,
-        title: Text("Home Page User", style: TextStyle(color: black)),
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-            onPressed: _handleLogout,
-            icon: Icon(Icons.logout, color: black),
-          ),
-        ],
+      bottomNavigationBar: BottomNav(
+        selectedItem: _selectedIndex,
       ),
     );
   }
+
+  
+  
 }
