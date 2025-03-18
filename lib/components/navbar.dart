@@ -18,7 +18,7 @@ class _BottomNavState extends State<BottomNav> {
       _currentIndex = index;
     });
     if (index == 0) {
-      Navigator.pushReplacementNamed(context, '/home');
+      Navigator.pushReplacementNamed(context, '/home_page_user');
     } else if (index == 1) {
       Navigator.pushReplacementNamed(context, '/pesanan');
     } else if (index == 2) {
@@ -42,13 +42,7 @@ class _BottomNavState extends State<BottomNav> {
           label: 'Beranda',
         ),
         BottomNavigationBarItem(
-          icon: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(Icons.access_time), // Jam
-              Icon(Icons.receipt), // Struk
-            ],
-          ),
+          icon:  Icon(Icons.receipt),
           label: 'Pesanan Saya',
         ),
         BottomNavigationBarItem(
