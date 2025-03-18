@@ -18,13 +18,6 @@ class _HomePageUserState extends State<HomePageUser> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNav(
-        selectedItem: _selectedIndex,
-      ),
-    );
+    return Scaffold(bottomNavigationBar: const BottomNav(selectedItem: 0));
   }
-
-  
-  
 }
