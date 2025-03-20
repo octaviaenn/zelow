@@ -58,7 +58,7 @@ class _BottomNavState extends State<BottomNav> {
           label: 'Profile',
         ),
       ],
-      selectedItemColor: Colors.black,
+      selectedItemColor: zelow,
       unselectedItemColor: Colors.black26,
       currentIndex: widget.selectedItem,
       onTap: changeSelectedNavBar,

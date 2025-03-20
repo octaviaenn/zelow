@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zelow/components/constant.dart';
+import 'package:zelow/pages/auth/login_page.dart';
 
 import '../../services/auth_service.dart';
 
@@ -257,7 +258,25 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
               ),
-              SizedBox(height: MediaQuery.of(context).size.width * 0.05),
+              SizedBox(height: MediaQuery.of(context).size.width * 0.025),
+              Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Already have an account?',
+                style: greyTextStyle.copyWith(fontSize: 12, fontWeight: FontWeight.normal),),
+                
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(context, 
+                  MaterialPageRoute(builder: (context)=> LoginPage()),
+                  );
+                  },
+                  child: Text('Log in',
+                  style: greenTextStyle.copyWith(fontSize: 12, fontWeight: FontWeight.bold),
+                  ),
+                )
+              ],
+            )
             ],
           ),
         ),

@@ -32,3 +32,6 @@ TextStyle abuInter = GoogleFonts.inter(
   color: grey,
 );
 
+TextStyle normal = GoogleFonts.nunito(
+);
+
