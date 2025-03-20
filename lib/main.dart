@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/pesanan_page',
+      initialRoute: '/flashsale_page',
       debugShowCheckedModeBanner: false,
       routes: {
         '/splash': (context) => SplashPage(),

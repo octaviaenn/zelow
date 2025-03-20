@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 import 'package:zelow/components/constant.dart';
-import 'package:zelow/components/flash_sale_time.dart';
 import 'package:zelow/components/flashsale_container.dart';
 import 'package:zelow/components/flassale_button.dart';
 import 'package:zelow/components/navbar.dart';
@@ -13,14 +13,8 @@ class FlashsalePage extends StatefulWidget {
 }
 
 class _FlashsalePageState extends State<FlashsalePage> {
-  int _currentTab = 0; // Indeks tab yang dipilih
-  int _selectedCategory = 0; // Indeks kategori yang dipilih
-
-  void _onTabSelected(int index) {
-    setState(() {
-      _currentTab = index;
-    });
-  }
+  int _selectedCategory = 0;
+  Duration _remainingTime = const Duration(hours: 1);
 
   final List<Map<String, dynamic>> _categories = [
     {"icon": Icons.flash_on, "text": "All"},
@@ -31,12 +25,30 @@ class _FlashsalePageState extends State<FlashsalePage> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_remainingTime.inSeconds > 0) {
+        setState(() {
+          _remainingTime -= const Duration(seconds: 1);
+        });
+      } else {
+        timer.cancel();
+      }
+    });
+  }
+
+  String _formatDuration(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(2, "0");
+    return "${twoDigits(duration.inHours)}:${twoDigits(duration.inMinutes.remainder(60))}:${twoDigits(duration.inSeconds.remainder(60))}";
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: zelow,
         elevation: 0,
-        centerTitle: false, 
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: white),
           onPressed: () {
@@ -50,60 +62,37 @@ class _FlashsalePageState extends State<FlashsalePage> {
         actions: [
           Row(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5),
-                child: CircleAvatar(
-                  backgroundColor: white,
-                  child: IconButton(
-                    icon: Icon(Icons.notifications, color: zelow),
-                    onPressed: () {
-                      // Aksi untuk notifikasi
-                    },
-                  ),
-                ),
+              IconButton(
+                icon: Icon(Icons.notifications, color: white),
+                onPressed: () {},
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5),
-                child: CircleAvatar(
-                  backgroundColor: white,
-                  child: IconButton(
-                    icon: Icon(Icons.shopping_bag_rounded, color: zelow),
-                    onPressed: () {
-                      // Aksi untuk shopping bag
-                    },
-                  ),
-                ),
+              IconButton(
+                icon: Icon(Icons.shopping_bag_rounded, color: white),
+                onPressed: () {},
               ),
             ],
           ),
         ],
       ),
-      backgroundColor: white,
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: white,
-                borderRadius: BorderRadius.circular(25),
-                border: Border.all(color: zelow, width: 1),
-              ),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Lagi pengen makan apa',
-                  hintStyle: greyTextStyle,
-                  prefixIcon: Icon(Icons.search, color: zelow),
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.symmetric(vertical: 11),
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: 'Lagi pengen makan apa',
+                hintStyle: greyTextStyle,
+                prefixIcon: Icon(Icons.search, color: zelow),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25),
+                  borderSide: BorderSide(color: zelow, width: 1),
                 ),
               ),
             ),
           ),
-          FlashSaleTabs(onTabSelected: _onTabSelected),
-          // Jarak 12px
-
-          // Scrollable Flash Sale Categories
+          
+          // Box Button Kategori
           SizedBox(
             height: 100,
             child: SingleChildScrollView(
@@ -125,17 +114,28 @@ class _FlashsalePageState extends State<FlashsalePage> {
               ),
             ),
           ),
-
+          
+          // Timer Flash Sale
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Text(
+              "BERAKHIR DALAM ${_formatDuration(_remainingTime)}",
+              style: blackTextStyle.copyWith(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          
           Expanded(
             child: ListView.builder(
-              padding: EdgeInsets.all(1),
               itemCount: 5,
-              itemBuilder: (context, index){
+              itemBuilder: (context, index) {
                 return FoodSaleCard(
-                  sold: (index + 1) * 5, // Contoh jumlah terjual dinamis
+                  sold: (index + 1) * 5,
                   maxStock: 50,
                 );
-              }
+              },
             ),
           ),
         ],
