@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:zelow/components/constant.dart';
+import 'package:zelow/components/flash_sale_time.dart';
 import 'package:zelow/components/flashsale_container.dart';
 import 'package:zelow/components/flassale_button.dart';
 import 'package:zelow/components/navbar.dart';
@@ -13,8 +14,15 @@ class FlashsalePage extends StatefulWidget {
 }
 
 class _FlashsalePageState extends State<FlashsalePage> {
+  int _currentTab = 0;
   int _selectedCategory = 0;
   Duration _remainingTime = const Duration(hours: 1);
+
+  void _onTabSelected(int index) {
+    setState(() {
+      _currentTab = index;
+    });
+  }
 
   final List<Map<String, dynamic>> _categories = [
     {"icon": Icons.flash_on, "text": "All"},
@@ -30,7 +38,7 @@ class _FlashsalePageState extends State<FlashsalePage> {
     Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_remainingTime.inSeconds > 0) {
         setState(() {
-          _remainingTime -= const Duration(seconds: 1);
+          _remainingTime = _remainingTime - const Duration(seconds: 1);
         });
       } else {
         timer.cancel();
@@ -49,6 +57,7 @@ class _FlashsalePageState extends State<FlashsalePage> {
       appBar: AppBar(
         backgroundColor: zelow,
         elevation: 0,
+        centerTitle: false,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: white),
           onPressed: () {
@@ -62,37 +71,54 @@ class _FlashsalePageState extends State<FlashsalePage> {
         actions: [
           Row(
             children: [
-              IconButton(
-                icon: Icon(Icons.notifications, color: white),
-                onPressed: () {},
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: CircleAvatar(
+                  backgroundColor: white,
+                  child: IconButton(
+                    icon: Icon(Icons.notifications, color: zelow),
+                    onPressed: () {},
+                  ),
+                ),
               ),
-              IconButton(
-                icon: Icon(Icons.shopping_bag_rounded, color: white),
-                onPressed: () {},
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: CircleAvatar(
+                  backgroundColor: white,
+                  child: IconButton(
+                    icon: Icon(Icons.shopping_bag_rounded, color: zelow),
+                    onPressed: () {},
+                  ),
+                ),
               ),
             ],
           ),
         ],
       ),
+      backgroundColor: white,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Lagi pengen makan apa',
-                hintStyle: greyTextStyle,
-                prefixIcon: Icon(Icons.search, color: zelow),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(25),
-                  borderSide: BorderSide(color: zelow, width: 1),
+            child: Container(
+              decoration: BoxDecoration(
+                color: white,
+                borderRadius: BorderRadius.circular(25),
+                border: Border.all(color: zelow, width: 1),
+              ),
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'Lagi pengen makan apa',
+                  hintStyle: greyTextStyle,
+                  prefixIcon: Icon(Icons.search, color: zelow),
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.symmetric(vertical: 11),
                 ),
               ),
             ),
           ),
-          
-          // Box Button Kategori
+          FlashSaleTabs(onTabSelected: _onTabSelected),
           SizedBox(
             height: 100,
             child: SingleChildScrollView(
@@ -114,21 +140,30 @@ class _FlashsalePageState extends State<FlashsalePage> {
               ),
             ),
           ),
-          
-          // Timer Flash Sale
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Text(
-              "BERAKHIR DALAM ${_formatDuration(_remainingTime)}",
-              style: blackTextStyle.copyWith(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
+            child: Row(
+              children: [
+                Text(
+                  "BERAKHIR DALAM ",
+                  style: blackTextStyle.copyWith(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  _formatDuration(_remainingTime),
+                  style: blackTextStyle.copyWith(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
           ),
-          
           Expanded(
             child: ListView.builder(
+              padding: EdgeInsets.all(1),
               itemCount: 5,
               itemBuilder: (context, index) {
                 return FoodSaleCard(
