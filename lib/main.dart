@@ -4,6 +4,7 @@ import 'package:zelow/pages/auth/login_page.dart';
 import 'package:zelow/pages/umkm/home_page_umkm.dart';
 import 'package:zelow/pages/user/flashsale_page.dart';
 import 'package:zelow/pages/user/home_page_user.dart';
+import 'package:zelow/pages/user/infoproduk_page.dart';
 import 'package:zelow/pages/user/pesanan_page.dart';
 
 import 'pages/splash_page.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/login_page': (context) => LoginPage(),
         '/flashsale_page': (context) => FlashsalePage(),
         '/pesanan_page': (context) => PesananPage(),
+        
       },
     );
   }

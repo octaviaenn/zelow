@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:zelow/components/akandatang_card.dart';
 import 'dart:async';
 import 'package:zelow/components/constant.dart';
 import 'package:zelow/components/flash_sale_time.dart';
 import 'package:zelow/components/flashsale_container.dart';
 import 'package:zelow/components/flassale_button.dart';
 import 'package:zelow/components/navbar.dart';
+import 'package:zelow/pages/user/infoproduk_page.dart';
 
 class FlashsalePage extends StatefulWidget {
   const FlashsalePage({super.key});
@@ -16,11 +18,13 @@ class FlashsalePage extends StatefulWidget {
 class _FlashsalePageState extends State<FlashsalePage> {
   int _currentTab = 0;
   int _selectedCategory = 0;
+  int _selectedTab = 0; 
   Duration _remainingTime = const Duration(hours: 1);
 
   void _onTabSelected(int index) {
     setState(() {
-      _currentTab = index;
+       _currentTab = index;
+       _selectedTab = index;
     });
   }
 
@@ -164,15 +168,50 @@ class _FlashsalePageState extends State<FlashsalePage> {
           Expanded(
             child: ListView.builder(
               padding: EdgeInsets.all(1),
-              itemCount: 5,
+              itemCount: (_selectedTab == 1 || _selectedTab == 2 || _selectedTab == 3) ? 3 : 5, 
               itemBuilder: (context, index) {
-                return FoodSaleCard(
-                  sold: (index + 1) * 5,
-                  maxStock: 50,
-                );
+                if (_selectedTab == 1 || _selectedTab == 2 || _selectedTab == 3) { 
+                  return const AkandatangCard();
+                } else {
+                  return FoodSaleCard(
+                    sold: (index + 1) * 5,
+                    maxStock: 50,
+                    onBuyPressed: () {
+                      Navigator.push(context, 
+                      MaterialPageRoute(builder: (context)=> ProductInfoPage(productData:
+                         { 'id': index + 1, // ID unik untuk produk
+                          'title': 'Masakan Padang Roda Dua, Bendungan Sutami',
+                          'imageUrl': 'https://picsum.photos/200/200',
+                          'rating': 4.5,
+                          'reviewCount': 688,
+                          'likeCount': 420,
+                          'price': 10000,
+                          'originalPrice': 12500,
+                          'distance': '1.2 km',
+                          'discount': '20%',
+                          'sold': (index + 1) * 5,
+                          'reviews': [
+                            {
+                              'name': 'Nana Mirdad',
+                              'imageUrl': 'https://example.com/avatar1.jpg',
+                              'rating': 5.0,
+                            },
+                            {
+                              'name': 'Budi Santoso',
+                              'imageUrl': 'https://example.com/avatar2.jpg',
+                              'rating': 4.0,
+                            },
+                           ],
+                         }     
+                          )));
+
+                    },
+                  );
+                }
               },
             ),
           ),
+
         ],
       ),
       bottomNavigationBar: const BottomNav(selectedItem: 2),

@@ -4,11 +4,13 @@ import 'package:zelow/components/constant.dart';
 class FoodSaleCard extends StatelessWidget {
   final int sold;
   final int maxStock;
+  final VoidCallback onBuyPressed;
 
   const FoodSaleCard({
     Key? key,
     required this.sold,
     required this.maxStock,
+    required this.onBuyPressed,
   }) : super(key: key);
 
   @override
@@ -169,20 +171,21 @@ class FoodSaleCard extends StatelessWidget {
                       ),
 
                       const SizedBox(width: 8),
-
-                      // Tombol Beli di samping progress bar
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
-                        decoration: BoxDecoration(
-                          color: zelow,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const Text(
-                          'Beli',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
+                      GestureDetector(
+                        onTap: onBuyPressed, // Tambahkan handler navigasi
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: zelow,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: const Text(
+                            'Beli',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
