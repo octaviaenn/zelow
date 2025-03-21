@@ -10,14 +10,14 @@ class ProductCard extends StatelessWidget {
   final VoidCallback onTap;
 
   const ProductCard({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.rating,
     required this.restaurantName,
     required this.distance,
     required this.estimatedTime,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,10 @@ class ProductCard extends StatelessWidget {
                   bottom: 8,
                   left: 8,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 6,
+                      vertical: 3,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.7),
                       borderRadius: BorderRadius.circular(12),
@@ -71,7 +74,9 @@ class ProductCard extends StatelessWidget {
                         const Icon(Icons.star, color: Colors.yellow, size: 12),
                         const SizedBox(width: 3),
                         Text(
-                          rating.toStringAsFixed(1), // Menampilkan rating dengan 1 desimal
+                          rating.toStringAsFixed(
+                            1,
+                          ), // Menampilkan rating dengan 1 desimal
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 11,
@@ -100,7 +105,10 @@ class ProductCard extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 6,
+                    vertical: 3,
+                  ),
                   decoration: BoxDecoration(
                     color: zelow.withOpacity(0.3), // Warna zelow dengan opacity
                     borderRadius: BorderRadius.circular(12),
@@ -109,14 +117,21 @@ class ProductCard extends StatelessWidget {
                     children: [
                       Text(
                         distance,
-                        style: TextStyle(fontSize: 9, color: zelow, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontSize: 9,
+                          color: zelow,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
                 ),
                 const SizedBox(width: 6),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 6,
+                    vertical: 3,
+                  ),
                   decoration: BoxDecoration(
                     color: zelow.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(12),
@@ -125,7 +140,11 @@ class ProductCard extends StatelessWidget {
                     children: [
                       Text(
                         estimatedTime,
-                        style: TextStyle(fontSize: 9, color: zelow, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontSize: 9,
+                          color: zelow,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
