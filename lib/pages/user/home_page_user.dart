@@ -97,7 +97,12 @@ class _HomePageUserState extends State<HomePageUser> {
                             padding: EdgeInsets.only(right: 16),
                             child: TextButton(
                               onPressed: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=> FlashsalePage()),);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => FlashsalePage(),
+                                  ),
+                                );
                               },
                               child: Text(
                                 'Lihat Semua',
@@ -137,7 +142,7 @@ class _HomePageUserState extends State<HomePageUser> {
                           ),
                         ),
                       ),
-                       SizedBox(
+                      SizedBox(
                         height: MediaQuery.of(context).size.height * 0.01,
                       ),
                       Row(
@@ -173,71 +178,78 @@ class _HomePageUserState extends State<HomePageUser> {
                         ],
                       ),
                       SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.20, // Sedikit lebih besar
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: List.generate(
-                            10,
-                            (index) => Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 0.5),
-                              child: SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.42, // 42% dari layar
-                                child: ProductCard(
-                                  imageUrl: 'assets/images/mie ayam.jpg',
-                                  rating: 4.5,
-                                  restaurantName: 'Nina Rasa',
-                                  distance: '1.2 km',
-                                  estimatedTime: '25 min',
-                                  onTap: () {},
+                        height:
+                            MediaQuery.of(context).size.height *
+                            0.20, 
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: List.generate(
+                              10,
+                              (index) => Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 0.5,
+                                ),
+                                child: SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width *
+                                      0.42, // 42% dari layar
+                                  child: ProductCard(
+                                    imageUrl: 'assets/images/mie ayam.jpg',
+                                    rating: 4.5,
+                                    restaurantName: 'Nina Rasa',
+                                    distance: '1.2 km',
+                                    estimatedTime: '25 min',
+                                    onTap: () {},
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: Text(
-                            'Rekomendasi Untukmu',
-                            style: blackTextStyle.copyWith(
-                              fontSize: MediaQuery.of(context).size.width * 0.04,
-                              fontWeight: FontWeight.bold,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Text(
+                              'Rekomendasi Untukmu',
+                              style: blackTextStyle.copyWith(
+                                fontSize:
+                                    MediaQuery.of(context).size.width * 0.04,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 8),
+                          const SizedBox(height: 8),
 
-                        // List Card ke BAWAH
-                        SizedBox(
-                          height: 400, // Biar bisa scroll kalau banyak
-                          child: ListView.builder(
-                            padding: EdgeInsets.zero,
-                            itemCount: 5, // Jumlah restoran
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(), // Scroll bawaan dari Parent
-                            itemBuilder: (context, index) {
-                              return DisplayCard(
-                                imageUrl: 'assets/images/mie ayam.jpg',
-                                restaurantName: 'Warung Mie Ayam',
-                                description: 'Mie ayam enak, porsi banyak!',
-                                rating: 4.5,
-                                distance: '1.2 km',
-                                estimatedTime: '15 min',
-                                onTap: () {
-                                  // Aksi ketika diklik
-                                },
-                              );
-                            },
+                          // List Card ke BAWAH
+                          SizedBox(
+                            height: 400, // Biar bisa scroll kalau banyak
+                            child: ListView.builder(
+                              padding: EdgeInsets.zero,
+                              itemCount: 5, // Jumlah restoran
+                              shrinkWrap: true,
+                              physics:
+                                  const NeverScrollableScrollPhysics(), // Scroll bawaan dari Parent
+                              itemBuilder: (context, index) {
+                                return DisplayCard(
+                                  imageUrl: 'assets/images/mie ayam.jpg',
+                                  restaurantName: 'Warung Mie Ayam',
+                                  description: 'Mie ayam enak, porsi banyak!',
+                                  rating: 4.5,
+                                  distance: '1.2 km',
+                                  estimatedTime: '15 min',
+                                  onTap: () {
+                                    // Aksi ketika diklik
+                                  },
+                                );
+                              },
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-
+                        ],
+                      ),
                     ],
                   ),
                 ),

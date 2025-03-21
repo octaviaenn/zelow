@@ -13,7 +13,7 @@ class InfoProdukCard extends StatelessWidget {
   final VoidCallback? onAddPressed;
 
   const InfoProdukCard({
-    Key? key,
+    super.key,
     required this.title,
     required this.imageUrl,
     required this.rating,
@@ -24,7 +24,7 @@ class InfoProdukCard extends StatelessWidget {
     this.onSavePressed,
     this.onSharePressed,
     this.onAddPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
